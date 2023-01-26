@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "189948792170",
+    "project_id": "flutter-19c90",
+    "storage_bucket": "flutter-19c90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189948792170:android:ee0d0f4fc645854ee66913",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189948792170-qskid5uc7oj7rbitc5mg4tgq9j212f93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx3UIaTGr2iyhx4YlhTk4awVFxL0-At-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189948792170-qskid5uc7oj7rbitc5mg4tgq9j212f93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:189948792170:android:9b1a8ec0378672b2e66913",
+        "android_client_info": {
+          "package_name": "com.example.modernlogintute"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "189948792170-qskid5uc7oj7rbitc5mg4tgq9j212f93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx3UIaTGr2iyhx4YlhTk4awVFxL0-At-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "189948792170-qskid5uc7oj7rbitc5mg4tgq9j212f93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
