@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modernlogintute/main.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -25,10 +26,14 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Center(
-          child: Text(
-        "LOGGED IN AS: " + user.email!,
-        style: TextStyle(fontSize: 20),
-      )),
+        child: Text(
+          "Welcome To Wakanda.. " + user.email!,
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
+     
     );
   }
 }
+
+
