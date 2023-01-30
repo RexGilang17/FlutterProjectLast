@@ -20,16 +20,16 @@ class _DateRangeState extends State<DateRange> {
     final start = dateRange.start;
     final end = dateRange.end;
 
-    return Container(
+    return Scaffold(
+      body: Container(padding: EdgeInsets.all(16), 
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            'Date Range',
-            style: TextStyle(fontSize: 32),
-          )
+          Text('Date Range', style: TextStyle(fontSize: 32),)
         ],
       ),
+      ),
+    
     );
   }
 }
