@@ -29,14 +29,14 @@ class ConsulatationCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: const <Widget>[
                     Text(
-                      "8:45",
+                      "8:45PM",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 13),
                     ),
                     Text(
-                      "Jan 30 2023",
+                      "Jan 30",
                       style: TextStyle(color: Colors.white, fontSize: 12),
                     )
                   ],
@@ -73,7 +73,7 @@ class ConsulatationCard extends StatelessWidget {
               ],
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
           ],
         ),

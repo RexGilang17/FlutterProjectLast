@@ -60,7 +60,10 @@ class _HomeKaryawanState extends State<HomeKaryawan> {
               TitleBar(title: "Informasi Data Cuti"),
               Row(
                 children: [
-                  ConsulatationCard(color: Colors.blueAccent, name: "Tes")
+                  ConsulatationCard(color: Colors.blue, name: "Tes"),
+                  SizedBox(
+                    width: 15,
+                  ),
                 ],
               ),
             ],
