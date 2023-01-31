@@ -44,7 +44,7 @@ class _HomeKaryawanState extends State<HomeKaryawan> {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              "Gilang",
+                              "GILANG ROMADHAN",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -60,9 +60,13 @@ class _HomeKaryawanState extends State<HomeKaryawan> {
               TitleBar(title: "Informasi Data Cuti"),
               Row(
                 children: [
-                  ConsulatationCard(color: Colors.blue, name: "Tes"),
+                  ConsulatationCard(
+                    color: Colors.blue,
+                    name: "Jumlah Cuti Saat ini",
+                    cuti: "12",
+                  ),
                   SizedBox(
-                    width: 15,
+                    width: 20,
                   ),
                 ],
               ),

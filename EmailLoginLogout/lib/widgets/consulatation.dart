@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:modernlogintute/widgets/date_range.dart';
 
 class ConsulatationCard extends StatelessWidget {
   final String name;
+  final String cuti;
   final Color color;
-  const ConsulatationCard({super.key, required this.name, required this.color});
+  const ConsulatationCard({
+    super.key,
+    required this.name,
+    required this.color,
+    required this.cuti,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 155,
-      height: 180,
+      width: 250,
+      height: 270,
       decoration: BoxDecoration(
           color: color,
           borderRadius: const BorderRadius.all(Radius.circular(20))),
@@ -29,7 +36,7 @@ class ConsulatationCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: const <Widget>[
                     Text(
-                      "8:45PM",
+                      "8:45",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -45,18 +52,34 @@ class ConsulatationCard extends StatelessWidget {
             ),
             const Spacer(),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   name,
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
+                    fontSize: 18,
+                  ),      
                 ),
+                 Text(
+                  cuti,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),      
+                ),
+               
+                
                 OutlinedButton(
-                  onPressed: (() {}),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DateRange(),
+                        ));
+                  },
                   style: ButtonStyle(
                       foregroundColor: MaterialStatePropertyAll(Colors.white),
                       backgroundColor:
@@ -66,14 +89,17 @@ class ConsulatationCard extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20))))),
                   child: const Text(
-                    "Ajukan Cuti",
-                    style: TextStyle(fontSize: 12),
+                    "Ajukan CUTI",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
           ],
         ),
