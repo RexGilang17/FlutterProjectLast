@@ -41,6 +41,8 @@ dependencies:
   date_time_picker: ^2.1.0
   date_range_picker: ^1.0.7
   intl: ^0.17.0
+  table_calendar: ^3.0.7
+ 
 
 dev_dependencies:
   flutter_test:

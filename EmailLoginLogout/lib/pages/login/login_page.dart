@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:modernlogintute/pages/login/forget_password.dart';
 import 'package:modernlogintute/pages/login/register_page.dart';
 import 'package:modernlogintute/pages/karyawan/karyawan_page.dart';
 import 'package:modernlogintute/pages/hrd/hrd_page.dart';
@@ -135,6 +136,32 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         SizedBox(
                           height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            // TextButton(
+                            //   onPressed: () {},
+                            //   child: Text(
+                            //     'Forgot Password?',
+                            //     style: TextStyle(color: Colors.grey[200]),
+                            //   ),
+                            // ),
+                            GestureDetector(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ForgotPassword(),
+                                  )),
+                              child: Text(
+                                'Forgot Password?',
+                                style: TextStyle(color: Colors.grey[200]),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 25,
                         ),
                         MaterialButton(
                           shape: RoundedRectangleBorder(

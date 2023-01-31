@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:modernlogintute/pages/karyawan/karyawan_page.dart';
 import 'package:modernlogintute/pages/login/register_page.dart';
 import 'firebase_options.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RegisterPage(),
+      home: KaryawanPage(),
     );
   }
 }
