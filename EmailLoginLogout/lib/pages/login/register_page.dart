@@ -21,9 +21,9 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController passwordController = new TextEditingController();
   final TextEditingController confirmpassController =
       new TextEditingController();
-  final TextEditingController name = new TextEditingController();
+  final TextEditingController nameController = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
-  final TextEditingController mobile = new TextEditingController();
+  // final TextEditingController mobile = new TextEditingController();
   bool _isObscure = true;
   bool _isObscure2 = true;
   File? file;
@@ -103,6 +103,36 @@ class _RegisterPageState extends State<RegisterPage> {
                           },
                           onChanged: (value) {},
                           keyboardType: TextInputType.emailAddress,
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        //UserNAME
+                        TextFormField(
+                          controller: nameController,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: 'Username',
+                            enabled: true,
+                            contentPadding: const EdgeInsets.only(
+                                left: 14.0, bottom: 8.0, top: 8.0),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: new BorderSide(color: Colors.white),
+                              borderRadius: new BorderRadius.circular(20),
+                            ),
+                          ),
+                          validator: (value) {
+                            if (value!.length == 0) {
+                              return "Name cannot be empty";
+                            }
+                          },
+                          onChanged: (value) {},
+                          keyboardType: TextInputType.text,
                         ),
                         SizedBox(
                           height: 20,
@@ -272,8 +302,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                 setState(() {
                                   showProgress = true;
                                 });
-                                signUp(emailController.text,
-                                    passwordController.text, role);
+                                signUp(
+                                    emailController.text,
+                                    nameController.text,
+                                    passwordController.text,
+                                    role);
                               },
                               child: Text(
                                 "Register",
@@ -308,21 +341,25 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void signUp(String email, String password, String role) async {
+  void signUp(String email, String name, String password, String role) async {
     CircularProgressIndicator();
     if (_formkey.currentState!.validate()) {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) => {postDetailsToFirestore(email, role)})
+          .then((value) => {postDetailsToFirestore(email, name, role)})
           .catchError((e) {});
     }
   }
 
-  postDetailsToFirestore(String email, String role) async {
+  postDetailsToFirestore(String email, String name, String role) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     var user = _auth.currentUser;
     CollectionReference ref = FirebaseFirestore.instance.collection('users');
-    ref.doc(user!.uid).set({'email': emailController.text, 'role': role});
+    ref.doc(user!.uid).set({
+      'email': emailController.text,
+      'name': nameController.text,
+      'role': role
+    });
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));
   }

@@ -13,7 +13,8 @@ class KaryawanPage extends StatefulWidget {
 }
 
 class _KaryawanPageState extends State<KaryawanPage> {
-   int currentPage = 0;
+  final users = FirebaseAuth.instance.currentUser!;
+  int currentPage = 0;
   final screen = [
     HomeKaryawan(),
     CalenderKaryawan(),
@@ -24,7 +25,7 @@ class _KaryawanPageState extends State<KaryawanPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text("Karyawan"),
+        title: Text("Karyawan" + users.email!),
         actions: [
           IconButton(
             onPressed: () {
@@ -36,7 +37,7 @@ class _KaryawanPageState extends State<KaryawanPage> {
           ),
         ],
       ),
-        body: IndexedStack(index: currentPage, children: screen),
+      body: IndexedStack(index: currentPage, children: screen),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         currentIndex: currentPage,
@@ -84,8 +85,6 @@ class _KaryawanPageState extends State<KaryawanPage> {
               label: "Profile"),
         ],
       ),
-    
-      
     );
   }
 

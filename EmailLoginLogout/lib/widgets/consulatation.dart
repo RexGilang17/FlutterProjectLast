@@ -60,18 +60,16 @@ class ConsulatationCard extends StatelessWidget {
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                  ),      
+                  ),
                 ),
-                 Text(
+                Text(
                   cuti,
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                  ),      
+                  ),
                 ),
-               
-                
                 OutlinedButton(
                   onPressed: () {
                     Navigator.push(

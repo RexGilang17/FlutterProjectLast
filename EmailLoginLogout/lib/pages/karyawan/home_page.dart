@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/widgets/consulatation.dart';
 import 'package:modernlogintute/widgets/title_bar.dart';
@@ -10,6 +11,8 @@ class HomeKaryawan extends StatefulWidget {
 }
 
 class _HomeKaryawanState extends State<HomeKaryawan> {
+  final users = FirebaseAuth.instance.currentUser!;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +41,13 @@ class _HomeKaryawanState extends State<HomeKaryawan> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Welcome To Wakanda",
+                              "Welcome To Wakanda, ",
                               style: TextStyle(
                                   color: Colors.black87,
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              "GILANG ROMADHAN",
+                              users.email!,
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
