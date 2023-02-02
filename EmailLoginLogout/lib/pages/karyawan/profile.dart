@@ -12,6 +12,8 @@ class _ProfileKaryawanState extends State<ProfileKaryawan> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
+      
+
     );
   }
 }
