@@ -17,8 +17,8 @@ const List<String> list = <String>['Melahirkan', 'Tahunan'];
 class _DateRangeState extends State<DateRange> {
   String dropdownvalue = list.first;
   DateTimeRange dateRange = DateTimeRange(
-    start: DateTime(2023, 12, 5),
-    end: DateTime(2023, 12, 17),
+    start: DateTime.now(),
+    end: DateTime(2023, 02, 17),
   );
 
   List dropDownListData = [
@@ -31,20 +31,24 @@ class _DateRangeState extends State<DateRange> {
 
   @override
   Widget build(BuildContext context) {
-    final start = dateRange.start;
-    final end = dateRange.end;
+    DateTime tanggalawal = dateRange.start;
+    DateTime tanggalakhir = dateRange.end;
+    final startDate = dateRange.start;
+    final endDate = dateRange.end;
     final difference = dateRange.duration;
-    final TextEditingController tanggalawal = TextEditingController();
-    final TextEditingController tanggalakhir = TextEditingController();
+    TextEditingController dateform =
+        TextEditingController(text: DateFormat('MM-dd-yyyy').format(startDate));
+    TextEditingController dateto =
+        TextEditingController(text: DateFormat('MM-dd-yyyy').format(endDate));
 
     User? user = FirebaseAuth.instance.currentUser;
 
     // final DateTime tanggalAwal;
-    DateTime tanggal = dateRange.start;
+    // DateTime tanggal = dateRange.start;
 
     // final DateTime updatedDate;
     // final DateRange tanggalAkhir = DateRange();
-    final TextEditingController keterangan = TextEditingController();
+    // final TextEditingController keterangan = TextEditingController();
 
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference addData = firestore.collection('addData');
@@ -67,14 +71,14 @@ class _DateRangeState extends State<DateRange> {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    child: Text(DateFormat('yyy/MM/dd').format(start)),
+                    child: Text(DateFormat('yyy/MM/dd').format(startDate)),
                     onPressed: pickDateRange,
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton(
-                    child: Text(DateFormat('yyy/MM/dd').format(end)),
+                    child: Text(DateFormat('yyy/MM/dd').format(startDate)),
                     onPressed: pickDateRange,
                   ),
                 ),
@@ -98,22 +102,22 @@ class _DateRangeState extends State<DateRange> {
               height: 20,
             ),
             TextFormField(
-              controller: tanggalawal,
+              controller: dateform,
               decoration: InputDecoration(
                 enabled: false,
                 border: OutlineInputBorder(),
-                hintText: DateFormat('yyy/MM/dd').format(start),
+                hintText: DateFormat('yyy/MM/dd').format(startDate),
               ),
             ),
             SizedBox(
               height: 20,
             ),
             TextFormField(
-              controller: tanggalakhir,
+              controller: dateto,
               decoration: InputDecoration(
                 enabled: false,
                 border: OutlineInputBorder(),
-                hintText: DateFormat('yyy/MM/dd').format(end),
+                hintText: DateFormat('yyy/MM/dd').format(endDate),
               ),
             ),
             SizedBox(
@@ -188,7 +192,7 @@ class _DateRangeState extends State<DateRange> {
               height: 20,
             ),
             TextFormField(
-              controller: keterangan,
+              // controller: keterangan,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Keterangan',
@@ -201,18 +205,18 @@ class _DateRangeState extends State<DateRange> {
 
             ElevatedButton(
                 onPressed: () async {
-                  if (secondDropDown == "") {
-                    print("Status Cuti Yang Dipilih");
-                  } else {
-                    print("user selected Cuti $defaultValue");
-                  }
+                  // if (secondDropDown == "") {
+                  //   print("Status Cuti Yang Dipilih");
+                  // } else {
+                  //   print("user selected Cuti $defaultValue");
+                  // }
                   await addData.doc(user!.uid).update({
                     // // "tanggalMulai": int.tryParse(tanggalMulai.text) ?? 0,
                     // // "tanggalAkhir": DateRange.
                     // "createDate": createdDate,
-                    "tanggalawal": dateRange.start,
-                    "tanggalakhir": dateRange.end,
-                    "keterangan": keterangan.text,
+                    "tanggalawal": tanggalawal,
+                    "tanggalakhir": tanggalakhir,
+                    // "keterangan": keterangan.text,
                   });
                 },
                 child: const Text("Submit")),

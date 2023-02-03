@@ -367,7 +367,10 @@ class _RegisterPageState extends State<RegisterPage> {
       'role': role,
       'tanggalawal': DateTime.now(),
       'tanggalakhir': DateTime.now(),
-      
+
+      // 'cuti':  ,
+      // 'keterangan': Text(""),
+
       // 'createdate':
     });
     Navigator.pushReplacement(
