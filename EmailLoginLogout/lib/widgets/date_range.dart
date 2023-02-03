@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,12 +21,31 @@ class _DateRangeState extends State<DateRange> {
     end: DateTime(2023, 12, 17),
   );
 
+  List dropDownListData = [
+    {"title": "Cuti Tahunan", "value": "1"},
+    {"title": "Cuti Melahirkan", "value": "2"},
+  ];
+
+  String defaultValue = "";
+  String secondDropDown = "";
+
   @override
   Widget build(BuildContext context) {
     final start = dateRange.start;
     final end = dateRange.end;
     final difference = dateRange.duration;
-    final TextEditingController tanggalMulai = TextEditingController();
+    final TextEditingController tanggalawal = TextEditingController();
+    final TextEditingController tanggalakhir = TextEditingController();
+
+    User? user = FirebaseAuth.instance.currentUser;
+
+    // final DateTime tanggalAwal;
+    DateTime tanggal = dateRange.start;
+
+    // final DateTime updatedDate;
+    // final DateRange tanggalAkhir = DateRange();
+    final TextEditingController keterangan = TextEditingController();
+
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference addData = firestore.collection('addData');
     return Scaffold(
@@ -52,12 +72,12 @@ class _DateRangeState extends State<DateRange> {
                   ),
                 ),
                 const SizedBox(width: 12),
-                // Expanded(
-                //   child: ElevatedButton(
-                //     child: Text(DateFormat('yyy/MM/dd').format(end)),
-                //     onPressed: pickDateRange,
-                //   ),
-                // ),
+                Expanded(
+                  child: ElevatedButton(
+                    child: Text(DateFormat('yyy/MM/dd').format(end)),
+                    onPressed: pickDateRange,
+                  ),
+                ),
               ],
             ),
             const SizedBox(
@@ -78,89 +98,97 @@ class _DateRangeState extends State<DateRange> {
               height: 20,
             ),
             TextFormField(
-              controller: tanggalMulai,
+              controller: tanggalawal,
               decoration: InputDecoration(
                 enabled: false,
                 border: OutlineInputBorder(),
                 hintText: DateFormat('yyy/MM/dd').format(start),
               ),
             ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // TextFormField(
-            //   decoration: InputDecoration(
-            //     enabled: false,
-            //     border: OutlineInputBorder(),
-            //     hintText: DateFormat('yyy/MM/dd').format(end),
-            //   ),
-            // ),
             SizedBox(
               height: 20,
             ),
-            LayoutBuilder(builder: (context, constraint) {
-              List<String> itemStringList = ["Tahunan", "Melahirkan"];
-              return FormField(
-                initialValue: false,
-                enabled: true,
-                builder: (FormFieldState<bool> field) {
-                  return InputDecorator(
-                    decoration: InputDecoration(
-                      labelText: "Pilih Jenis Cuti",
-                      errorText: field.errorText,
-                      helperText: "Pilih Jenis Cuti",
-                    ),
-                    child: ButtonTheme(
-                      alignedDropdown: false,
-                      child: DropdownButton<String>(
-                        isExpanded: true,
-                        value: "Tahunan",
-                        icon: Padding(
-                          padding: const EdgeInsets.only(right: 10.0),
-                          child: Icon(
-                            Icons.arrow_drop_down_outlined,
-                            size: 24.0,
-                            color: Theme.of(context).textTheme.bodyLarge!.color,
-                          ),
-                        ),
-                        iconSize: 16,
-                        elevation: 16,
-                        style: TextStyle(
-                          fontSize:
-                              Theme.of(context).textTheme.bodyMedium!.fontSize,
-                          fontFamily: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .fontFamily,
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
-                        ),
-                        underline: Container(
-                          height: 0,
-                          color: Colors.grey[300],
-                        ),
-                        onChanged: (String? newValue) {},
-                        items: itemStringList
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 0.0,
-                                vertical: 0.0,
-                              ),
-                              child: Text(
-                                value,
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  );
-                },
-              );
-            }),
             TextFormField(
+              controller: tanggalakhir,
+              decoration: InputDecoration(
+                enabled: false,
+                border: OutlineInputBorder(),
+                hintText: DateFormat('yyy/MM/dd').format(end),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            // InputDecorator(
+            //   decoration: InputDecoration(
+            //     border: OutlineInputBorder(
+            //         borderRadius: BorderRadius.circular(15.0)),
+            //     contentPadding: const EdgeInsets.all(10),
+            //   ),
+            //   child: DropdownButtonHideUnderline(
+            //     child: DropdownButton<String>(
+            //         isDense: true,
+            //         value: defaultValue,
+            //         isExpanded: true,
+            //         menuMaxHeight: 350,
+            //         items: [
+            //           const DropdownMenuItem(
+            //               child: Text(
+            //                 "Select Course",
+            //               ),
+            //               value: ""),
+            //           ...dropDownListData.map<DropdownMenuItem<String>>((data) {
+            //             return DropdownMenuItem(
+            //                 child: Text(data['title']), value: data['value']);
+            //           }).toList(),
+            //         ],
+            //         onChanged: (value) {
+            //           print("selected Value $value");
+            //           setState(() {
+            //             defaultValue = value!;
+            //           });
+            //         }),
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            InputDecorator(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15.0)),
+                contentPadding: const EdgeInsets.all(10),
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                    isDense: true,
+                    value: secondDropDown,
+                    isExpanded: true,
+                    menuMaxHeight: 350,
+                    items: [
+                      const DropdownMenuItem(
+                          child: Text(
+                            "Status Cuti",
+                          ),
+                          value: ""),
+                      ...dropDownListData.map<DropdownMenuItem<String>>((data) {
+                        return DropdownMenuItem(
+                            child: Text(data['title']), value: data['value']);
+                      }).toList(),
+                    ],
+                    onChanged: (value) {
+                      print("selected Value $value");
+                      setState(() {
+                        secondDropDown = value!;
+                      });
+                    }),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              controller: keterangan,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Keterangan',
@@ -170,22 +198,26 @@ class _DateRangeState extends State<DateRange> {
             SizedBox(
               height: 25,
             ),
+
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueAccent,
-                shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              onPressed: () {
-                addData.add({
-                  "tanggalMulai": int.tryParse(tanggalMulai.text) ?? 0,
-                });
-              },
-              child: const Text(
-                "Ajukan Cuti",
-                style: TextStyle(fontSize: 15),
-              ),
+                onPressed: () async {
+                  if (secondDropDown == "") {
+                    print("Status Cuti Yang Dipilih");
+                  } else {
+                    print("user selected Cuti $defaultValue");
+                  }
+                  await addData.doc(user!.uid).update({
+                    // // "tanggalMulai": int.tryParse(tanggalMulai.text) ?? 0,
+                    // // "tanggalAkhir": DateRange.
+                    // "createDate": createdDate,
+                    "tanggalawal": dateRange.start,
+                    "tanggalakhir": dateRange.end,
+                    "keterangan": keterangan.text,
+                  });
+                },
+                child: const Text("Submit")),
+            SizedBox(
+              height: 20,
             ),
           ],
         ),

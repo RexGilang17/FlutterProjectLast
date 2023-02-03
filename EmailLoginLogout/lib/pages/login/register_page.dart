@@ -24,6 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController nameController = new TextEditingController();
   final TextEditingController emailController = new TextEditingController();
   // final TextEditingController mobile = new TextEditingController();
+
   bool _isObscure = true;
   bool _isObscure2 = true;
   File? file;
@@ -36,6 +37,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference users = firestore.collection('users');
     return Scaffold(
       backgroundColor: Colors.black45,
       body: SingleChildScrollView(
@@ -307,6 +310,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                     nameController.text,
                                     passwordController.text,
                                     role);
+                                // users.doc({
+
+                                // });
                               },
                               child: Text(
                                 "Register",
@@ -358,7 +364,11 @@ class _RegisterPageState extends State<RegisterPage> {
     ref.doc(user!.uid).set({
       'email': emailController.text,
       'name': nameController.text,
-      'role': role
+      'role': role,
+      'tanggalawal': DateTime.now(),
+      'tanggalakhir': DateTime.now(),
+      
+      // 'createdate':
     });
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => LoginPage()));

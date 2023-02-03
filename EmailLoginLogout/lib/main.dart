@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:modernlogintute/pages/hrd/hrd_page.dart';
 import 'package:modernlogintute/pages/karyawan/karyawan_page.dart';
 import 'package:modernlogintute/pages/login/register_page.dart';
 import 'firebase_options.dart';
