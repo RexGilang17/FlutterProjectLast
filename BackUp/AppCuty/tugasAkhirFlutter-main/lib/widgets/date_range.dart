@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
-import 'package:modernlogintute/pages/karyawan/home_page.dart';
-// import 'package:modernlogintute/pages/karyawan/info_cuti.dart';
+// import 'package:tugas_akhir_flutter/pages/karyawan/calendar_page.dart';
+import 'package:tugas_akhir_flutter/pages/karyawan/info_cuti.dart';
 
 class DateRange extends StatefulWidget {
   const DateRange({super.key});
@@ -20,7 +19,7 @@ class _DateRangeState extends State<DateRange> {
   String dropdownvalue = list.first;
   DateTimeRange dateRange = DateTimeRange(
     start: DateTime.now(),
-    end: DateTime.now(),
+    end: DateTime(2023, 02, 17),
   );
 
   List dropDownListData = [
@@ -51,6 +50,7 @@ class _DateRangeState extends State<DateRange> {
     // final DateTime updatedDate;
     // final DateRange tanggalAkhir = DateRange();
     final TextEditingController keterangan = TextEditingController();
+    // final TextEditingController jenisCuti = TextEditingController();
 
     // FirebaseFirestore firestore = FirebaseFirestore.instance;
     // CollectionReference addData = firestore.collection('addData');
@@ -214,7 +214,6 @@ class _DateRangeState extends State<DateRange> {
                   // }
                   CollectionReference addData =
                       FirebaseFirestore.instance.collection('users');
-
                   await addData.doc(user!.uid).update({
                     // // "tanggalMulai": int.tryParse(tanggalMulai.text) ?? 0,
                     // // "tanggalAkhir": DateRange.
@@ -225,7 +224,7 @@ class _DateRangeState extends State<DateRange> {
                   });
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      return HomeKaryawan();
+                      return InfoCuti();
                     },
                   ));
                 },

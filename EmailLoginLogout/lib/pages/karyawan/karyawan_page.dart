@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/pages/karyawan/calender.dart';
 import 'package:modernlogintute/pages/karyawan/home_page.dart';
+import 'package:modernlogintute/pages/karyawan/informasi_cuti.dart';
+
 import 'package:modernlogintute/pages/karyawan/profile.dart';
 import 'package:modernlogintute/pages/login/login_page.dart';
 
@@ -18,25 +20,25 @@ class _KaryawanPageState extends State<KaryawanPage> {
   final screen = [
     HomeKaryawan(),
     CalenderKaryawan(),
-    ProfileKaryawan(),
+    InfoCuti(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text("Karyawan" + users.email!),
-        actions: [
-          IconButton(
-            onPressed: () {
-              logout(context);
-            },
-            icon: Icon(
-              Icons.logout,
-            ),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   title: Text("Karyawan" + users.email!),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //         logout(context);
+      //       },
+      //       icon: Icon(
+      //         Icons.logout,
+      //       ),
+      //     ),
+      //   ],
+      // ),
       body: IndexedStack(index: currentPage, children: screen),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
@@ -75,11 +77,11 @@ class _KaryawanPageState extends State<KaryawanPage> {
           BottomNavigationBarItem(
               icon: currentPage == 2
                   ? Icon(
-                      Icons.person,
+                      Icons.info,
                       color: Colors.black45,
                     )
                   : Icon(
-                      Icons.person_outlined,
+                      Icons.info_outline_rounded,
                       color: Colors.grey,
                     ),
               label: "Profile"),
